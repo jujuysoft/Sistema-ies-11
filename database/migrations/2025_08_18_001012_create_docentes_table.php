@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('docentes', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 100);
-            $table->string('dni'. 10)->unique();
+            $table->string('dni', 10)->unique();
             $table->date('fecha_nacimiento');
             $table->string('direccion', 100);
             $table->string('telefono', 20);
