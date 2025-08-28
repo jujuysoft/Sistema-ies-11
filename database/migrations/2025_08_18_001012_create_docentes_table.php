@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('fecha_ingreso');
             $table->date('fecha_egreso')->nullable();
             $table->boolean('estado');
+            $table->integer('horas_laborales');
             $table->timestamps();
         });
     }

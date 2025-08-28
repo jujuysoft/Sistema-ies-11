@@ -19,12 +19,13 @@ class Docente extends Model
         'fecha_ingreso',
         'fecha_egreso',
         'estado',
+        'horas_laborales',
     ];
     //Relacion con Informe_Docente, un docente tiene uno o mas informes por el HasMany
     public function informes__docentes(){
         return $this->hasMany(Informes_Docente::class);
-    
+
     }
 
-    
+
 }
