@@ -12,4 +12,9 @@ class Anexo extends Model
         'nombre',
         'direccion'
     ];
+    public function docente(){
+        return $this->belongsToMany(Docente::class,'informes')
+        ->withPivot('fecha','descripcion','documento_url')
+        ->withTimestamps();
+    }
 }

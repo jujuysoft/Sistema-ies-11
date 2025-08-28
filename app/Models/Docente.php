@@ -32,4 +32,10 @@ class Docente extends Model
         return $this->hasMany(Licencia::class);
     }
 
+    public function anexo(){
+        return $this->belongsToMany(Anexo::class,'informes')
+        ->withPivot('fecha','descripcion','documento_url')
+        ->withTimestamps();
+    }
+
 }
