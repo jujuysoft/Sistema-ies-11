@@ -21,10 +21,7 @@ class Docente extends Model
         'estado',
         'horas_laborales'
     ];
-    //Relacion con Informe_Docente, un docente tiene uno o mas informes por el HasMany
-    public function informes__docentes(){
-        return $this->hasMany(Informes_Docente::class);
-    }
+    
     public function ausencia(){
         return $this->hasMany(Ausencia::class);
     }
@@ -35,6 +32,11 @@ class Docente extends Model
     public function anexo(){
         return $this->belongsToMany(Anexo::class,'informes')
         ->withPivot('fecha','descripcion','documento_url')
+        ->withTimestamps();
+    }
+    public function asignacion(){
+        return $this->belongsToMany(Asignacione::class, 'espacios_curriculares')
+        ->withPivot('nombre', 'curso', 'division','turno','horas_espacios','cupof')
         ->withTimestamps();
     }
 

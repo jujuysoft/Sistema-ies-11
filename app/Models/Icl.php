@@ -14,4 +14,7 @@ class Icl extends Model
         'fecha_fin',
         'observaciones',
     ];
+    public function asignacion(){
+        return $this->hasMany(Asignacione::class);  
+    }
 }

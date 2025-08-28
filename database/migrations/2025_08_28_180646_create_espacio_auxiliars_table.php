@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('informes__docentes', function (Blueprint $table) {
+        Schema::create('espacio_auxiliars', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_docente')->constrained('docentes')->onDelete('cascade');
-            $table->date('fecha');
-            $table->text('descripcion')->nullable();
-            $table->string('documento_url',255);
+            $table->string('nombre');
+            $table->string('curso');
+            $table->string('division');
+            $table->string('turno');
+            $table->integer('horas_espacios');
+            $table->string('cupof');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('informes__docentes');
+        Schema::dropIfExists('espacio_auxiliars');
     }
 };
