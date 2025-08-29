@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Docente;
+use Inertia\Inertia;
 
 class DocenteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return Inertia::render('Docente/index', [
+            'docentes' => Docente::all()
+        ]);
     }
 
     /**
@@ -59,7 +60,7 @@ class DocenteController extends Controller
     {
         return Inertia::render('Docente/edit', [
             'docente' => $docente
-        ])
+        ]);
     }
 
     /**
