@@ -19,7 +19,7 @@ class DocenteController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -27,7 +27,21 @@ class DocenteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string|max:100',
+            'dni' => 'required|string|max:10|unique:docentes',
+            'fecha_nacimiento' => 'required|date',
+            'direccion' => 'required|string|max:100',
+            'telefono' => 'required|string|max:20',
+            'email' => 'required|string|max:100|unique:docentes',
+            'fecha_ingreso' => 'required|date',
+            'fecha_egreso' => 'required|date|nullable',
+            'estado' => 'required|boolean:',
+            'horas_laborales' => 'required|integer:',
+        ]);
+
+        Docente::create($request->all());
+        return redirect()->route('docente.index');
     }
 
     /**
@@ -41,24 +55,40 @@ class DocenteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Docente $docente)
     {
-        //
+        return Inertia::render('Docente/edit', [
+            'docente' => $docente
+        ])
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Docente $docente)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string|max:100',
+            'dni' => 'required|string|max:10|unique:docentes',
+            'fecha_nacimiento' => 'required|date',
+            'direccion' => 'required|string|max:100',
+            'telefono' => 'required|string|max:20',
+            'email' => 'required|string|max:100|unique:docentes',
+            'fecha_ingreso' => 'required|date',
+            'fecha_egreso' => 'required|date|nullable',
+            'estado' => 'required|boolean:',
+            'horas_laborales' => 'required|integer:',
+        ]);
+        $docente -> update($request->all());
+        return redirect()->route('docente.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Docente $docente)
     {
-        //
+        $docente -> delete();
+        return redirect()->route('docente.index');
     }
 }
